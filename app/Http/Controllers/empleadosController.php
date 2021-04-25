@@ -40,16 +40,15 @@ class empleadosController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'id' => 'required',
             'Nombres' => 'required',
-            'apellidos' => 'required',
+            'Apellidos' => 'required',
             'Cargo' => 'required',
             'Salario' => 'required',
             'Fechaingreso' => 'required',
             'Fechasalida' => 'nullable',
             'Motivosalida' => 'nullable'
         ]);
-        Producto::create($data);
+        empleados::create($data);
 
         return redirect('/empleados')->with('success', 'empleados creado correctamente.');
         //
@@ -74,7 +73,7 @@ class empleadosController extends Controller
      */
     public function edit($id)
     {
-        $producto = empleados::findOrFail($id);
+        $empleados = empleados::findOrFail($id);
         return view('empleados.update')->with('empleados', $empleados);
         //
     }
@@ -89,9 +88,9 @@ class empleadosController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'id' => 'required',
+            
             'Nombres' => 'required',
-            'apellidos' => 'required',
+            'Apellidos' => 'required',
             'Cargo' => 'required',
             'Salario' => 'required',
             'Fechaingreso' => 'required',
